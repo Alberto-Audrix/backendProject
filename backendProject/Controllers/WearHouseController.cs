@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace backendProject.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/wearhouse")]
     [ApiController]
     public class WearHouseController : ControllerBase
     {
@@ -61,30 +61,8 @@ namespace backendProject.Controllers
         // POST for admin
 
         // POST api/<WearHouseController>
-        //[HttpPost]
-        //public ActionResult Post([FromBody] NewAdminRequest newAdmins)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
-        //    // ngecek sama apa gak IDnya terus return true kalo bener
-
-        //    var admin = new Admins
-        //    {
-        //        Nama = newAdmins.Nama,
-        //        Email = newAdmins.Email,
-        //        Pass = newAdmins.Pass
-        //    };
-
-        //    _context.Admin.Add(admin);
-        //    _context.SaveChanges();
-        //    return Ok();
-        //}
-
-        // Post for Product
         [HttpPost]
-        public ActionResult Post([FromBody] NewProductRequest newProduct)
+        public ActionResult Post([FromBody] NewAdminRequest newAdmins)
         {
             if (!ModelState.IsValid)
             {
@@ -92,15 +70,37 @@ namespace backendProject.Controllers
             }
             // ngecek sama apa gak IDnya terus return true kalo bener
 
-            var product = new Product
+            var admin = new Admins
             {
-                Category = newProduct.Category,
+                Nama = newAdmins.Nama,
+                Email = newAdmins.Email,
+                Pass = newAdmins.Pass
             };
 
-            _context.Products.Add(product);
+            _context.Admin.Add(admin);
             _context.SaveChanges();
             return Ok();
         }
+
+        // Post for Product
+        //[HttpPost]
+        //public ActionResult Post([FromBody] NewProductRequest newProduct)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
+        //    // ngecek sama apa gak IDnya terus return true kalo bener
+
+        //    var product = new Product
+        //    {
+        //        Category = newProduct.Category,
+        //    };
+
+        //    _context.Products.Add(product);
+        //    _context.SaveChanges();
+        //    return Ok();
+        //}
 
 
         // PUT for admin

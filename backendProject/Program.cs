@@ -2,6 +2,7 @@ using backendProject.Data;
 using Microsoft.EntityFrameworkCore;
 
 
+
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
@@ -24,7 +25,7 @@ options.UseSqlServer(configuration.GetConnectionString("WearHouses")));
 
 builder.Services.AddCors(policyBuilder =>
     policyBuilder.AddDefaultPolicy(policy =>
-        policy.WithOrigins("https://localhost:44367/api/WearHouse").AllowAnyHeader().AllowAnyHeader())
+        policy.WithOrigins("*").AllowAnyHeader().AllowAnyHeader())
 );
 
 var app = builder.Build();
